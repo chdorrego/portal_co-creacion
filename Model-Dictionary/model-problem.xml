@@ -1,0 +1,25 @@
+<problem>
+  <creation-date></creation-date>
+  <id></id>
+  <category></category>
+  <title></title>
+  <description></description>
+  <user></user>
+  <attachment/>
+  <review>
+    <user/>
+    <ranking/>
+    <comment/>
+  </review>
+  <solution>
+    <title/>
+    <description/>
+    <user/>
+    <attachment/>
+    <review>
+      <user/>
+      <ranking/>
+      <comment/>
+    </review>
+  </solution>
+</problem>

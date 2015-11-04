@@ -1,0 +1,9 @@
+<account>
+  <user></user>
+  <name></name>
+  <email></email>
+  <password></password>
+  <enable></enable>
+  <role></role>
+  <creation-date></creation-date>
+</account>
