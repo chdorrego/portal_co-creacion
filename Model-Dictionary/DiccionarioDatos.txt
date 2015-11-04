@@ -28,16 +28,19 @@ Diccionario Problem:
 <user/> : id del usuario creador del problema. NO NULL
 <attachment/>: Ruta de elementos adjuntos. REPETIBLE 
 <review> : REPETIBLE 
+	<creation-date> : fecha de creación del comentario del problema. NO NULL. 
 	<user/> : id del usuario creador del comentario del problema (review). NO NULL
 	<ranking/> : Calificación por parte del creador del comentario. Número entero entre 0-5. O Bajo, 5 Alto. NO NULL
 	<comment/> : Descripción del comentario del problema. 
 </review>
 <solution> : REPETIBLE
+	<creation-date> : fecha de creación de la solución. NO NULL. 
 	<title/> : Título de la solución. NO NULL
 	<description/> : Descripción de la solución. NO NULL 
 	<user/> : id del usuario creador de la solución. NO NULL
 	<attachment/> : Ruta del elemento adjunto a la solución. 
 	<review> : REPETIBLE 
+	  <creation-date/> : fecha de creación del comentario de la solución. NO NULL
 	  <user/> :  id del usuario creador del comentario de la solución (review). NO NULL
 	  <ranking/> : Calificación por parte del creador del comentario de la solución. Número entero entre 0-5. O Bajo, 5 Alto. NO NULL
 	  <comment/> : Descripción del comentario de la solución. 
