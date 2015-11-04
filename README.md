@@ -11,6 +11,7 @@ Portal de co-creación
 	* Desabilitar usuario ```http://localhost:8984/rest/?run=disableUser.xq&user=[userName]```
 	* Eliminar problema ```http://localhost:8984/rest/?run=/admin/deleteProblem.xq&idProblem=[idProblem]```
 
+* La descripción del modelo y diccionario de datos se encuentra en la carpeta [Model-Dictionary](/Model-Dictionary)
 
 ## Configuraciones adicionales para una correcta ejecución (sobre Basex 8.3) ##
 Estos cambios son necesarios para utilizar el [Módulo Session de basex](http://docs.basex.org/wiki/Session_Module) (manejo de sesión en la aplicación).
