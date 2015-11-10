@@ -2,13 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xf="http://www.w3.org/2002/xforms">
 <head>
 	<title></title>
-	<script type="text/javascript">
-		function getDate(){
-		var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		var f=new Date();
-		return (f.getDay() + "- " + f.getDate() + " - " + meses[f.getMonth()] + " de " + f.getFullYear());
-		}
-	</script>
 	<style type="text/css">
    @namespace xf url("http://www.w3.org/2002/xforms");
  
@@ -48,39 +41,30 @@
 				<user required="true"/>
 				<name required="true"/>
 				<email required="true"/>
-				<password required="true"/>
-				<enable>true</enable>
-				<role>user</role>
+				<password required="true" />
+				<enable></enable>
+				<role></role>
 				<creation-date></creation-date>
 			</account>
 		</xf:instance>
-		<xf:submission id="save" name="createfrom" method="post" replace="all" validate="true" action="/register"/>
-		<xf:bind ref="/register/new_user_data" nodeset="instance()//*[@required='true']" required="true()" /> 
+		<xf:submission id="save" name="createfrom" method="put" validate="true" replace="instance" action="/update"/>
+		<xf:bind nodeset="/account/user" readonly="true()" />
 		
-		<xf:bind nodeset="account/creation-date" setvalue="javascript:getData()"/>
-		
-	</xf:model>
+		<xf:submission id="cargar" name="createfrom" method="get" replace="instance" action="/user"/>
+		<xf:bind nodeset="/account/user" readonly="true()" />
+		<forms:bind nodeset="/account/name" required="true()"/>
+		<forms:bind nodeset="/account/email" required="true()"/>
+		<forms:bind nodeset="/account/password" required="true()"/>
+		<forms:bind nodeset="/account/password" setvalue=""/>
+		<xf:send ev:event="xforms-ready" submission="cargar" />
 
-	<xxforms:script>
-    <xxforms:code>
-        
-		var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		var f=new Date();
-		return {(f.getDay() + "- " + f.getDate() + " - " + meses[f.getMonth()] + " de " + f.getFullYear());
-		}
-    </xxforms:code>
-    <xforms:action ev:event="xxforms-script-done">
-        <xxforms:variable name="result" select="event('xxforms:script-result')"/>
-        <xforms:setvalue ref="account/creation-date" value="$result"/>
-    </xforms:action>
-</xxforms:script>
-	
+	</xf:model>
 	
 </head>
 <body>
 	<fieldset>
 		<legend>Registro de usuario</legend>
-		<xf:input ref="user" >
+		<xf:input ref="user">
 			<xf:label>Usuario: </xf:label>
 			
 		</xf:input>
@@ -94,12 +78,12 @@
 			<xf:label>Correo: </xf:label>
 		</xf:input>
 		<br/>
-		<xf:secret ref="password" >
+		<xf:secret ref="password">
 			<xf:label>Contrasena: </xf:label>
 		</xf:secret>
 		<br/>
 		<xf:submit submission="save">
-			<xf:label>Registrar</xf:label>
+			<xf:label>Guardar</xf:label>
 		</xf:submit>
 		<br/>
 	</fieldset>

@@ -2,7 +2,7 @@ xquery version '3.0';
 module namespace page = 'http://basex.org/examples/web-page';
 import module namespace session = "http://basex.org/modules/session";
 
-declare %rest:path("/login") %rest:POST("{$data}")  (: $data = contain elements from form:)
+declare %rest:path("/login1") %rest:POST("{$data}")  (: $data = contain elements from form:)
 function page:multipart($data)
 { 
 let $user := $data//user/text() (:Get user:)

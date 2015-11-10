@@ -43,7 +43,6 @@
             <account xmlns="">
                <user/>
                <password/>
-               <result/>
             </account>
          </xf:instance>
           <xf:submission id="login" name="loginForm" action="/login" method="post" validate="true" replace="all"/>
@@ -64,7 +63,6 @@
             <xf:label>Ingresar</xf:label>
          </xf:submit>
          <br/>
-         <xf:output ref="result"/>
       </fieldset>
    </body>
 </html>
