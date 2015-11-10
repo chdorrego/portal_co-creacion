@@ -62,9 +62,9 @@ function page:login($userLog)
 
   let $db := db:open('account')
   let $user := $db//account[user = $userLog/account/user and password = $userLog/account/password]
-  let $user_session := session:set('user', if(exists($user))then $user else 'inactive')
-  let $error := if(exists($user))then 0 else 1
-  let $message := if((exists($user))and($user/account/enable = "true"))then "Welcome" else "User or password doesn't match" 
+  let $user_session := session:set('user', if((exists($user))and($user/account/enable/text() = "true"))then $user else 'inactive')
+  let $error := if((exists($user))and($user/account/enable/text() = "true"))then 0 else 1
+  let $message := if((exists($user))and($user/account/enable/text() = "true"))then "Welcome" else "User or password doesn't match" 
   return  <json type="object">
           <error>{$error}</error>
           <message>{$message}</message>
@@ -89,7 +89,7 @@ function page:testsession()
 {
 let $current_session := session:get('user')
   
-  return if(not(exists($current_session)))
+  return if($current_session='inactive')
          then <rest:redirect>http://google.com.co</rest:redirect> (:Go to login:)
          else "Staying here"
          
