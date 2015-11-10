@@ -1,10 +1,11 @@
 # Paths
 INPUTPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/
 DATAPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/
-WORKPATH = /Users/Lst5/portal_co-creacion/basex/webapp/
+WORKPATH = C:/Users/s113e21/Documents/portal_co-creacion/basex/webapp/
 PROJECTPATH = 
-EDITOR = 1
-EDITOR1 = /Users/Lst5/portal_co-creacion/basex/webapp/authentication.xq
+EDITOR = 2
+EDITOR1 = C:/Users/s113e21/Documents/portal_co-creacion/basex/webapp/prueba.xq
+EDITOR2 = C:/Users/s113e21/Documents/portal_co-creacion/basex/webapp/authentication.xq
 INPUTS = 0
 OPEN = 1
 OPEN1 = /Users/Lst5/portal_co-creacion/basex/webapp/authentication.xq

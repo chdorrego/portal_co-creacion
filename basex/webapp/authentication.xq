@@ -41,7 +41,6 @@ declare
 %output:method("xml")
 function page:user()
 {
-
   let $db := db:open('account')
   let $username := session:get('user')
   let $data := $db//account[user = $username/user]
@@ -62,9 +61,9 @@ function page:login($userLog)
 
   let $db := db:open('account')
   let $user := $db//account[user = $userLog/account/user and password = $userLog/account/password]
-  let $user_session := session:set('user', if((exists($user))and($user/account/enable/text() = "true"))then $user else 'inactive')
-  let $error := if((exists($user))and($user/account/enable/text() = "true"))then 0 else 1
-  let $message := if((exists($user))and($user/account/enable/text() = "true"))then "Welcome" else "User or password doesn't match" 
+  let $user_session := session:set('user', if((exists($user))and($user/enable/text() = "true"))then $user else 'inactive')
+  let $error := if((exists($user))and($user/enable/text() = "true"))then 0 else 1
+  let $message := if((exists($user))and($user/enable/text() = "true"))then "Welcome" else "User or password doesn't match" 
   return  <json type="object">
           <error>{$error}</error>
           <message>{$message}</message>
@@ -83,15 +82,13 @@ function page:logout()
 };
 
 declare
-%rest:path("/testsession")
-%rest:GET
 function page:testsession()
 {
 let $current_session := session:get('user')
   
-  return if($current_session='inactive')
-         then <rest:redirect>http://google.com.co</rest:redirect> (:Go to login:)
-         else "Staying here"
+return if($current_session='inactive')
+then <rest:redirect>http://google.com.co</rest:redirect> (:Go to login:)
+else <nada>Staying here</nada>
          
 };
 
@@ -103,9 +100,10 @@ declare
 updating function page:delete()
 {
   let $current_session := session:get('user')
-  let $name_document := concat($current_session/user/text(),".xml")
   let $current_session_delete := session:delete('user')
-  return if(db:exists("account",$name_document))
-       then db:delete("account",$name_document) 
-       else () 
+  let $db := db:open('account')
+  let $user := $db//account[user = $current_session/user]
+  return if(not(empty($user)))
+       then replace value of node $db//account[user = $user/user/text()]/enable with 'false' 
+       else (db:output("ni existe")) 
 };
