@@ -4,9 +4,9 @@
 	<title></title>
 	<script type="text/javascript">
 		function getDate(){
-		var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		
 		var f=new Date();
-		return (f.getDay() + "- " + f.getDate() + " - " + meses[f.getMonth()] + " de " + f.getFullYear());
+		return (f.getDate() + "/" + (f.getMonth()+1) + "/" + f.getFullYear());
 		}
 	</script>
 	<style type="text/css">
@@ -59,22 +59,9 @@
 		
 		<xf:bind nodeset="account/creation-date" setvalue="javascript:getData()"/>
 		
-	</xf:model>
+		<xf:setvalue ev:event="xforms-submit" ref="/account/creation-date" value="getDate()"></xf:setvalue>
 
-	<xxforms:script>
-    <xxforms:code>
-        
-		var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		var f=new Date();
-		return {(f.getDay() + "- " + f.getDate() + " - " + meses[f.getMonth()] + " de " + f.getFullYear());
-		}
-    </xxforms:code>
-    <xforms:action ev:event="xxforms-script-done">
-        <xxforms:variable name="result" select="event('xxforms:script-result')"/>
-        <xforms:setvalue ref="account/creation-date" value="$result"/>
-    </xforms:action>
-</xxforms:script>
-	
+	</xf:model>
 	
 </head>
 <body>
@@ -103,5 +90,6 @@
 		</xf:submit>
 		<br/>
 	</fieldset>
+	<p><script>getDate()</script></p>
 </body>
 </html>

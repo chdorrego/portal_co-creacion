@@ -5,6 +5,7 @@ xquery version '3.0';
 module namespace page = "http://basex.org/examples/web-page";
 import module namespace session = "http://basex.org/modules/session";
 
+(:user register:)
 declare
 %rest:path("/register")
 %rest:POST("{$new_user_data}")
@@ -13,8 +14,8 @@ declare
 updating function page:register( $new_user_data)
 {
 
-let $name_document := concat($new_user_data//user,".xml")
-return if(not(db:exists("account",$name_document)))
+  let $name_document := concat($new_user_data//user,".xml")
+  return if(not(db:exists("account",$name_document)))
        then db:add("account",$new_user_data,$name_document)
        else ()
 };
@@ -26,8 +27,8 @@ declare
 %output:json("format=direct")
 updating function page:updateuser($user)
 {
-let $name_document := concat($user//user,".xml")
-return if(db:exists("account",$name_document))
+  let $name_document := concat($user//user,".xml")
+  return if(db:exists("account",$name_document))
        then db:replace('account',$name_document,$user)
        else ()
 
@@ -41,12 +42,12 @@ declare
 function page:user()
 {
 
-let $db := db:open('account')
-let $username := session:get('user')
-let $data := $db//account[user = $username/user]
-let $error := if(exists($data))then 0 else 1
-let $message := if(exists($data))then "User exist" else "User doesn't exist"
-return  $data
+  let $db := db:open('account')
+  let $username := session:get('user')
+  let $data := $db//account[user = $username/user]
+  let $error := if(exists($data))then 0 else 1
+  let $message := if(exists($data))then "User exist" else "User doesn't exist"
+  return  $data
 };
 
 (:Session Services:)
@@ -59,12 +60,12 @@ declare
 function page:login($userLog)
 {
 
-let $db := db:open('account')
-let $user := $db//account[user = $userLog/account/user and password = $userLog/account/password]
-let $user_session := session:set('user', if(exists($user))then $user else 'inactive')
-let $error := if(exists($user))then 0 else 1
-let $message := if((exists($user))and($user/account/enable = "true"))then "Welcome" else "User or password doesn't match" 
-return  <json type="object">
+  let $db := db:open('account')
+  let $user := $db//account[user = $userLog/account/user and password = $userLog/account/password]
+  let $user_session := session:set('user', if(exists($user))then $user else 'inactive')
+  let $error := if(exists($user))then 0 else 1
+  let $message := if((exists($user))and($user/account/enable = "true"))then "Welcome" else "User or password doesn't match" 
+  return  <json type="object">
           <error>{$error}</error>
           <message>{$message}</message>
         </json>
@@ -76,9 +77,9 @@ declare
 %rest:GET
 function page:logout()
 {
-let $del := session:delete('user')
-let $close := session:close()
-return <rest:redirect>http://google.com.co</rest:redirect>
+  let $del := session:delete('user')
+  let $close := session:close()
+  return <rest:redirect>http://google.com.co</rest:redirect>
 };
 
 declare
@@ -101,9 +102,10 @@ declare
 %rest:DELETE
 updating function page:delete()
 {
-let $current_session := session:get('user')
-  let $name_document := concat($current_session/account/user,".xml")
+  let $current_session := session:get('user')
+  let $name_document := concat($current_session/user/text(),".xml")
+  let $current_session_delete := session:delete('user')
   return if(db:exists("account",$name_document))
-       then(db:delete("account",$name_document),  session:close())
+       then db:delete("account",$name_document) 
        else () 
 };

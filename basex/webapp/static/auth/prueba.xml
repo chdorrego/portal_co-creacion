@@ -1,22 +1,9 @@
-<xh:html xmlns:xf="http://www.w3.org/2002/xforms"
-    xmlns:f="http://orbeon.org/oxf/xml/formatting"
-    xmlns:xh="http://www.w3.org/1999/xhtml"
-    xmlns:xxf="http://orbeon.org/oxf/xml/xforms"
-    xmlns:widget="http://orbeon.org/oxf/xml/widget"
-    xmlns:ev="http://www.w3.org/2001/xml-events"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xxforms:script>
-    <xxforms:code>
-        return {
-            latitude: brayan,
-            longitude: 43
+
+<script type="text/javascript">
+        function getDate(){
+        
+        var f=new Date();
+        return (f.getDay() + " / " + f.getMonth()]+ " / " + f.getFullYear());
         }
-    </xxforms:code>
-    <xforms:action ev:event="xxforms-script-done">
-        <xxforms:variable name="result" select="event('xxforms:script-result')"/>
-        <xforms:setvalue ref="/position/latitude" value="$result/latitude"/>
-        <xforms:setvalue ref="/position/longitude" value="$result/longitude"/>
-    </xforms:action>
-</xxforms:script>
-</xh:html>
+    </script>

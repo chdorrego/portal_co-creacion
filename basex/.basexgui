@@ -1,20 +1,13 @@
 # Paths
 INPUTPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/
 DATAPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/
-WORKPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/
+WORKPATH = /Users/Lst5/portal_co-creacion/basex/webapp/
 PROJECTPATH = 
-EDITOR = 4
-EDITOR1 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/authentication.xq
-EDITOR2 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/logout1.xq
-EDITOR3 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/login1.xq
-EDITOR4 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/restxq.xqm
+EDITOR = 1
+EDITOR1 = /Users/Lst5/portal_co-creacion/basex/webapp/authentication.xq
 INPUTS = 0
-OPEN = 5
-OPEN1 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/authentication.xq
-OPEN2 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/restxq.xqm
-OPEN3 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/login1.xq
-OPEN4 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/logout1.xq
-OPEN5 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/authentication1.xq
+OPEN = 1
+OPEN1 = /Users/Lst5/portal_co-creacion/basex/webapp/authentication.xq
 
 # Layout
 FONT = SansSerif
@@ -28,11 +21,11 @@ COLORBLUE = 6
 # Windows
 UPDATEVERSION = 8.3.1
 VIEWS = V H editor folder map plot - H text info table tree explore - - 
-GUISIZE0 = 1004
-GUISIZE1 = 748
-GUILOC0 = 10
-GUILOC1 = 10
-MAXSTATE = true
+GUISIZE0 = 2560
+GUISIZE1 = 1413
+GUILOC0 = 0
+GUILOC1 = 23
+MAXSTATE = false
 SHOWBUTTONS = true
 SHOWINPUT = true
 SHOWSTATUS = true
