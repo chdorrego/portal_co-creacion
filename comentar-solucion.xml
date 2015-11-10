@@ -1,0 +1,133 @@
+<?xml-stylesheet href="xsltforms/xsltforms.xsl" type="text/xsl"
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xf="http://www.w3.org/2002/xforms"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<head>
+
+		<script type="text/javascript" language="javascript">
+		
+		function generateUUID() {
+		var d = new Date().getTime();
+		var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = (d + Math.random()*16)%16 | 0;
+		d = Math.floor(d/16);
+		return (c=='x' ? r : (r &amp; 0x3|0x8)).toString(16);
+		});
+		return uuid;
+		};
+		
+		// Obtiene el valor del parametro documento buscando en la URL del navegador
+		function getparam(){
+		var url = window.location.href;
+		var r = url.substring( url.indexOf("?id=") + 4 ) + '.xml'; 
+		// alert( r );
+		return r;
+		}
+		</script>
+
+		<xf:model>
+
+			<!-- Origen de la instancia -->
+			<xf:instance src = "model-problem.xml" >
+			</xf:instance>
+			
+			<xf:submission id="send" method="POST" replace="none">
+				<xf:resource value="concat('/rest/data/?run=/problem/',getparam(),'/solution/')" />
+				<xf:message ev:event="xforms-submit-done">Documento Guardado</xf:message>
+				<xf:message ev:event="xforms-submit-error">Error al guardar</xf:message>
+				
+			</xf:submission>
+
+			<!-- Este submission carga la orden segun el id que le pasen por parametro en la url -->
+			<xf:submission id="cargar" method="GET" replace="instance">
+				<xf:resource value="getparam()"/>
+			</xf:submission>
+
+			<!-- Ejecuta el submission cargar cuando esta listo el XForms -->
+			<xf:send ev:event="xforms-ready" submission="cargar"/>
+
+		</xf:model>
+
+	</head>
+	<body>	
+
+		<h1>Solucion</h1>
+		<xf:output xmlns:xf="http://www.w3.org/2002/xforms" ref="/problem/solution/title">
+			<xf:label>Titulo: </xf:label>
+		</xf:output>
+		<br/>
+		<xf:output xmlns:xf="http://www.w3.org/2002/xforms" ref="/problem/solution/description">
+			<xf:label>Descripcion: </xf:label>
+		</xf:output>
+		<br/>
+		<xf:output xmlns:xf="http://www.w3.org/2002/xforms" ref="/problem/solution/user">
+			<xf:label>Usuario: </xf:label>
+		</xf:output>
+		<br/>
+
+		<br/>
+		<br/>
+
+			<h2>Reviews</h2>	
+				<xf:repeat xmlns:xf="http://www.w3.org/2002/xforms" ref="/problem/solution/review/user">
+									
+					<br/>
+					<xf:input xmlns:xf="http://www.w3.org/2002/xforms" ref="/problem/solution/review/creation-date">
+						<xf:label>Fecha de creacion: </xf:label>
+					</xf:input>
+					<br/>
+					
+					<xf:input ref="user">
+						<xf:label>Usuario: </xf:label>
+					</xf:input>
+					<br/>
+					
+					<xf:select1 ref="/problem/solution/review/ranking" appearance="full" >  
+					<xf:label>Ranking: </xf:label>
+					<xf:item>
+						<xf:label>1</xf:label>
+						<xf:value>1</xf:value> 
+					</xf:item>
+					<xf:item>
+						<xf:label>2</xf:label>
+						<xf:value>2</xf:value>
+					</xf:item>
+					<xf:item>
+						<xf:label>3</xf:label>
+						<xf:value>3</xf:value>
+					</xf:item>
+					<xf:item>
+						<xf:label>4</xf:label>
+						<xf:value>4</xf:value>
+					</xf:item>
+					<xf:item>
+						<xf:label>5</xf:label>
+						<xf:value>5</xf:value>
+					</xf:item>
+					</xf:select1>
+					
+					<br/>
+					<xf:textarea ref="/problem/solution/review/comment">
+						<xf:label>Comentario: </xf:label>
+					</xf:textarea>
+					
+					<xf:trigger>
+						<xf:label> + </xf:label>
+						<xf:action xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="DOMActivate">
+							<xf:insert nodeset="../review"/>
+						</xf:action>
+					</xf:trigger>
+					<xf:trigger>
+						<xf:label> - </xf:label>
+						<xf:action xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="DOMActivate">
+							<xf:delete nodeset="."/>
+						</xf:action>
+					</xf:trigger>
+				</xf:repeat>
+
+				<xf:submit xmlns:xf="http://www.w3.org/2002/xforms" submission="send">
+					<xf:label>Guardar Review</xf:label>
+				</xf:submit>
+
+	</body>
+</html>
