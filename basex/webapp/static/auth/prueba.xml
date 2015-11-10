@@ -6,40 +6,17 @@
     xmlns:ev="http://www.w3.org/2001/xml-events"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xh:head>
-        <xh:title>Using the getValue and setValue from JavaScript</xh:title>
-        <xf:model>
-            <xf:instance id="instance">
-                <instance>
-                    <foo/>
-                    <bar/>
-                </instance>
-            </xf:instance>
-            <xf:bind ref="/instance/bar" calculate="/instance/foo"/>
-            <xxf:script ev:event="xforms-ready">
-                ORBEON.xforms.Document.setValue("foo", 42);
-            </xxf:script>
-        </xf:model>
-    </xh:head>
-    <xh:body>
-        <xh:p>
-            <xf:input ref="foo" id="foo">
-                <xf:label class="fixed-width">Value of foo:</xf:label>
-            </xf:input>
-        </xh:p>
-        <xh:p>
-            <xf:output ref="bar">
-                <xf:label class="fixed-width">Value of bar:</xf:label>
-            </xf:output>
-        </xh:p>
-        <xh:p>
-            <xf:trigger>
-                <xf:label>Increment foo with JavaScript</xf:label>
-                <xxf:script ev:event="DOMActivate">
-                    var fooValue = ORBEON.xforms.Document.getValue("foo");
-                    ORBEON.xforms.Document.setValue("foo", Number(fooValue) + 1);
-                </xxf:script>
-            </xf:trigger>
-        </xh:p>
-    </xh:body>
+  <xxforms:script>
+    <xxforms:code>
+        return {
+            latitude: brayan,
+            longitude: 43
+        }
+    </xxforms:code>
+    <xforms:action ev:event="xxforms-script-done">
+        <xxforms:variable name="result" select="event('xxforms:script-result')"/>
+        <xforms:setvalue ref="/position/latitude" value="$result/latitude"/>
+        <xforms:setvalue ref="/position/longitude" value="$result/longitude"/>
+    </xforms:action>
+</xxforms:script>
 </xh:html>
