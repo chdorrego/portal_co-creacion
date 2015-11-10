@@ -20,8 +20,8 @@ return if(not(db:exists("account",$name_document)))
 };
 
 declare
-%rest:path("/update")
-%rest:PUT("{$user}")
+%rest:path("/profile")
+%rest:POST("{$user}")
 %output:method("json")
 %output:json("format=direct")
 updating function page:updateuser($user)
@@ -92,4 +92,18 @@ let $current_session := session:get('user')
          then <rest:redirect>http://google.com.co</rest:redirect> (:Go to login:)
          else "Staying here"
          
+};
+
+(:Delete User:)
+
+declare
+%rest:path("/profile")
+%rest:DELETE
+updating function page:delete()
+{
+let $current_session := session:get('user')
+  let $name_document := concat($current_session/account/user,".xml")
+  return if(db:exists("account",$name_document))
+       then(db:delete("account",$name_document),  session:close())
+       else () 
 };

@@ -47,16 +47,18 @@
 				<creation-date></creation-date>
 			</account>
 		</xf:instance>
-		<xf:submission id="save" name="createfrom" method="put" validate="true" replace="instance" action="/update"/>
+		<xf:submission id="Delete" name="delete" method="Delete" validate="true" replace="instance" action="/profile"/>
 		<xf:bind nodeset="/account/user" readonly="true()" />
 		
-		<xf:submission id="cargar" name="createfrom" method="get" replace="instance" action="/user"/>
+		<xf:submission id="cargar" name="cargar" method="get" replace="instance" action="/user"/>
 		<xf:bind nodeset="/account/user" readonly="true()" />
 		<forms:bind nodeset="/account/name" required="true()"/>
 		<forms:bind nodeset="/account/email" required="true()"/>
 		<forms:bind nodeset="/account/password" required="true()"/>
 		<forms:bind nodeset="/account/password" setvalue=""/>
 		<xf:send ev:event="xforms-ready" submission="cargar" />
+
+		 <xf:submission id="save" name="createfrom" method="POST" validate="true" replace="instance" action="/profile"/>
 
 	</xf:model>
 	
@@ -84,6 +86,9 @@
 		<br/>
 		<xf:submit submission="save">
 			<xf:label>Guardar</xf:label>
+		</xf:submit>
+		<xf:submit submission="Delete">
+			<xf:label>Eliminar cuenta</xf:label>
 		</xf:submit>
 		<br/>
 	</fieldset>
