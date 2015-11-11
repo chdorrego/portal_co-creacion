@@ -1,14 +1,13 @@
 # Paths
 INPUTPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/
 DATAPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/
-WORKPATH = C:/Users/s113e21/Documents/portal_co-creacion/basex/webapp/
+WORKPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/
 PROJECTPATH = 
-EDITOR = 2
-EDITOR1 = C:/Users/s113e21/Documents/portal_co-creacion/basex/webapp/prueba.xq
-EDITOR2 = C:/Users/s113e21/Documents/portal_co-creacion/basex/webapp/authentication.xq
+EDITOR = 1
+EDITOR1 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/authentication.xq
 INPUTS = 0
 OPEN = 1
-OPEN1 = /Users/Lst5/portal_co-creacion/basex/webapp/authentication.xq
+OPEN1 = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/authentication.xq
 
 # Layout
 FONT = SansSerif
@@ -22,10 +21,10 @@ COLORBLUE = 6
 # Windows
 UPDATEVERSION = 8.3.1
 VIEWS = V H editor folder map plot - H text info table tree explore - - 
-GUISIZE0 = 2560
-GUISIZE1 = 1413
+GUISIZE0 = 1932
+GUISIZE1 = 1092
 GUILOC0 = 0
-GUILOC1 = 23
+GUILOC1 = 0
 MAXSTATE = false
 SHOWBUTTONS = true
 SHOWINPUT = true

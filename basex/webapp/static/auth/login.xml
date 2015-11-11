@@ -62,6 +62,7 @@
          <xf:submit submission="login">
             <xf:label>Ingresar</xf:label>
          </xf:submit>
+         <a class="button" href="manage-account.xml">Registrarse</a>
          <br/>
       </fieldset>
    </body>
