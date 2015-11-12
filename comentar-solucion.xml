@@ -6,20 +6,22 @@
 
 		<script type="text/javascript" language="javascript">
 		
-		function generateUUID() {
-		var d = new Date().getTime();
-		var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		var r = (d + Math.random()*16)%16 | 0;
-		d = Math.floor(d/16);
-		return (c=='x' ? r : (r &amp; 0x3|0x8)).toString(16);
-		});
-		return uuid;
+		function getparam(){
+				var url = window.location.href;
+				var r = url.substring( url.indexOf("?problem=") + 9 ) + ''; 
+				// alert( r );
+				return r;
+			};
+		function getidsol(){
+			var url1 = window.location.href;
+			var ra = url1.substring( url1.indexOf("?solution=") + 10 ) + ''; 
+			// alert( ra );
+			return ra;
 		};
 		
-		// Obtiene el valor del parametro documento buscando en la URL del navegador
-		function getparam(){
+		function getrev(){
 		var url = window.location.href;
-		var r = url.substring( url.indexOf("?id=") + 4 ) + '.xml'; 
+		var r = url.substring( url.indexOf("?review=") + 8 ) + ''; 
 		// alert( r );
 		return r;
 		}
@@ -31,20 +33,18 @@
 			<xf:instance src = "model-problem.xml" >
 			</xf:instance>
 			
+			<xf:submission id="cargar" method="GET" replace="instance" >
+				<xf:resource value="concat('/problem/',getparam(),'/solution/',getidsol(),'/review')"/>
+			</xf:submission>
+			 
+			<xf:send ev:event="xforms-ready" submission="cargar" />
+			
 			<xf:submission id="send" method="POST" replace="none">
-				<xf:resource value="concat('/rest/data/?run=/problem/',getparam(),'/solution/')" />
+				<xf:resource value="concat('/problem/',getparam(),'/solution/',getidsol(),'/review')" />
 				<xf:message ev:event="xforms-submit-done">Documento Guardado</xf:message>
 				<xf:message ev:event="xforms-submit-error">Error al guardar</xf:message>
 				
 			</xf:submission>
-
-			<!-- Este submission carga la orden segun el id que le pasen por parametro en la url -->
-			<xf:submission id="cargar" method="GET" replace="instance">
-				<xf:resource value="getparam()"/>
-			</xf:submission>
-
-			<!-- Ejecuta el submission cargar cuando esta listo el XForms -->
-			<xf:send ev:event="xforms-ready" submission="cargar"/>
 
 		</xf:model>
 
@@ -114,7 +114,7 @@
 					<xf:trigger>
 						<xf:label> + </xf:label>
 						<xf:action xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="DOMActivate">
-							<xf:insert nodeset="../review"/>
+							<xf:insert nodeset=".."/>
 						</xf:action>
 					</xf:trigger>
 					<xf:trigger>
@@ -127,6 +127,7 @@
 
 				<xf:submit xmlns:xf="http://www.w3.org/2002/xforms" submission="send">
 					<xf:label>Guardar Review</xf:label>
+							<xf:insert nodeset=".."/>
 				</xf:submit>
 
 	</body>

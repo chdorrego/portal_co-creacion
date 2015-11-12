@@ -55,6 +55,7 @@ declare %rest:path("problem/{$pid}/solution/{$sid}/review")
 %rest:POST('{$review}')
 updating function pr:guardar-solucion-review($pid, $sid, $review)
 {
+  (:guardar review:)
   let $p := doc( concat('data/',$pid,'.xml') )
   let $rev := $p/problem/solution[position()=$sid]
   return

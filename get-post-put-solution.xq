@@ -56,6 +56,7 @@ declare %rest:path("problem/{$pid}/solution")
 %rest:POST('{$solucion}')
 updating function pr:guardar-solucion($pid, $solucion)
 {
+  (:guardar solucion:)
   let $p := doc( concat('data/',$pid,'.xml') )
   let $sol := $p/problem
   return
