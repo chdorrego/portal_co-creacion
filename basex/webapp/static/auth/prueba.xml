@@ -1,0 +1,9 @@
+
+
+<script type="text/javascript">
+        function getDate(){
+        
+        var f=new Date();
+        return (f.getDay() + " / " + f.getMonth()]+ " / " + f.getFullYear());
+        }
+    </script>
