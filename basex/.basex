@@ -1,7 +1,7 @@
 # General Options
 DEBUG = false
-DBPATH = /Users/Christian/Repo/portal_co-creacion/basex/data
-REPOPATH = /Users/Christian/Repo/portal_co-creacion/basex/repo
+DBPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/data
+REPOPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/repo
 LANG = English
 LANGKEYS = false
 GLOBALLOCK = false
@@ -24,8 +24,8 @@ LOG = true
 LOGMSGMAXLEN = 1000
 
 # HTTP Services
-WEBPATH = /Users/Christian/Repo/portal_co-creacion/basex/webapp
-RESTPATH = /Users/Christian/Repo/portal_co-creacion/basex/webapp/static
+WEBPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp
+RESTPATH = C:/Users/BRAYANANDRES/Documents/portal_co-creacion/basex/webapp/static
 RESTXQPATH =  
 CACHERESTXQ = false
 HTTPLOCAL = false
